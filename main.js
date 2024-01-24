@@ -10,7 +10,7 @@ const mesUltimoVale = dataEntregaUltimoVale.getMonth() + 1
 const dataUltimoValeFormat = diaUltimoVale + " / " + mesUltimoVale
 const valorConversaoParaDia = 86400000;
 const valorDovaleEntregue = 210;
-var quantidadeMarmita = valorDovaleEntregue / 14;
+var quantidadeMarmita = getQuantidadeMarmitaLocalStorage();
  
 
  function ehDiaUlil() {
@@ -31,7 +31,12 @@ function addQuantidadeMarmitaLocalStorage(quant) {
 
 function getQuantidadeMarmitaLocalStorage(){
     var quantMarmita = localStorage.getItem("quantMarmita")
-    return quantidade.innerHTML = quantMarmita
+    if(quantMarmita === null) {
+        return quantidadeMarmita = valorDovaleEntregue / 14;
+    } else {
+        return quantidadeMarmita = quantMarmita;
+        
+    }
 }
 
 function calculaMarmita() {
@@ -40,8 +45,8 @@ function calculaMarmita() {
 
         quantidadeMarmita--; 
         addQuantidadeMarmitaLocalStorage(quantidadeMarmita)
+        quantidade.innerHTML = getQuantidadeMarmitaLocalStorage()
 
-        getQuantidadeMarmitaLocalStorage()
         dataUltimoVale.innerHTML = dataUltimoValeFormat
         ValorUltimoVale.innerHTML = ` R$ ${valorDovaleEntregue}`
 
@@ -50,6 +55,4 @@ function calculaMarmita() {
 }
 
 
-calculaMarmita()
-
-setInterval(calculaMarmita, 5000)
+setInterval(calculaMarmita, 10000)
