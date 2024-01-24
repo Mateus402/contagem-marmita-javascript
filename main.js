@@ -25,13 +25,23 @@ function verificaQuantidade() {
     }
 }
 
+function addQuantidadeMarmitaLocalStorage(quant) {
+    localStorage.setItem("quantMarmita", quant)
+}
+
+function getQuantidadeMarmitaLocalStorage(){
+    var quantMarmita = localStorage.getItem("quantMarmita")
+    return quantidade.innerHTML = quantMarmita
+}
+
 function calculaMarmita() {
 
     if(ehDiaUlil()){
 
         quantidadeMarmita--; 
+        addQuantidadeMarmitaLocalStorage(quantidadeMarmita)
 
-        quantidade.innerHTML = quantidadeMarmita
+        getQuantidadeMarmitaLocalStorage()
         dataUltimoVale.innerHTML = dataUltimoValeFormat
         ValorUltimoVale.innerHTML = ` R$ ${valorDovaleEntregue}`
 
